@@ -23,12 +23,12 @@ class App extends Component {
     })
   }
 
-  nameChangedHandler = ( event, id ) => {
+  nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
     });
-    
-    const person = {...this.state.persons[personIndex]};
+
+    const person = { ...this.state.persons[personIndex] };
 
     person.name = event.target.value;
 
@@ -41,7 +41,7 @@ class App extends Component {
   deletePersonHandler = (personIndex) => {
     const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
-    this.setState({persons: persons});
+    this.setState({ persons: persons });
   }
 
   togglePersonsHandler = () => {
@@ -70,9 +70,9 @@ class App extends Component {
             return <Person
               click={() => this.deletePersonHandler(index)}
               name={person.name}
-              age={person.age} 
+              age={person.age}
               key={person.id}
-              changed={(event) => this.nameChangedHandler(event, person.id)}/>
+              changed={(event) => this.nameChangedHandler(event, person.id)} />
           })}
         </div>
       )
@@ -80,9 +80,19 @@ class App extends Component {
       style.backgroundColor = 'red';
     }
 
+    let classes = [];
+    if (this.state.persons.length <= 2) {
+      classes.push('red');
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push('bold');
+    }
+
+
     return (
       <div className="App">
         <h1>Hi, I'm a new react app</h1>
+        <p className={classes.join(' ')}>This is really working!</p>
         <button
           style={style}
           onClick={this.togglePersonsHandler}>Toggle People</button>
