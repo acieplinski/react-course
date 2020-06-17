@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-// import styles from './Person.module.css';
+import styles from './Person.module.css';
 import Aux from '../../../hoc/Auxiliary';
+import withClass from '../../../hoc/WithClass';
+
 
 class Person extends Component {
     render() {
@@ -14,4 +16,4 @@ class Person extends Component {
     }
 }
 
-export default Person;
+export default withClass(Person, styles.Person);
